@@ -1,0 +1,21 @@
+alert tcp $EXTERNAL_NET any -> any any (
+    msg: "Detectado SYN flood";
+    flags: S;
+    flow: stateless;
+    detection_filter:
+        track by_dst,
+        count 1000,
+        seconds 1;
+    sid: 10001;
+)
+
+alert tcp $EXTERNAL_NET any -> any any (
+    msg: "Detectado FIN flood";
+    flags: F;
+    flow: stateless;
+    detection_filter:
+        track by_dst,
+        count 1000,
+        seconds 1;
+    sid: 10002;
+)
