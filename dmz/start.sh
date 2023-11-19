@@ -18,8 +18,8 @@ sed -i "s@PrintMotd no@PrintMotd yes@g" /etc/ssh/sshd_config
 # Activamos el banner
 sed -i "s@#Banner none@Banner /etc/issue@g" /etc/ssh/sshd_config
 
-# Regla para redirigir el tráfico del puerto 22 al 2222 (cowrie)
-iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
+# Regla para redirigir el tráfico del puerto 22 al 2222 (cowrie) que viene de la EXT
+iptables -t nat -A PREROUTING -p tcp --dport 22 -s 10.5.0.0/24 -j REDIRECT --to-port 2222
 
 echo "Starting Cowrie"
 su cowrie -c "cd ~ && ls -l && ./start_cowrie.sh" > /dev/null 2>&1

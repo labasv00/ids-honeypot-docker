@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   fw:
-    image: bin/fw
+    image: bin/fw-ids
     build: ./fw
     container_name: fw
     networks:
@@ -16,7 +16,7 @@ services:
     
   extranet:
     build: ./extranet
-    image: bin/extranet
+    image: bin/extranet-ids
     container_name: ext1
     networks:
       extranet:
@@ -27,7 +27,7 @@ services:
     tty: true
     
   intranet1:
-    image: bin/intranet
+    image: bin/intranet-ids
     build: ./intranet
     container_name: int1
     networks:
@@ -39,7 +39,7 @@ services:
     tty: true
 
   intranet2:
-    image: bin/intranet
+    image: bin/intranet-ids
     build: ./intranet
     container_name: int2
     networks:
@@ -51,7 +51,7 @@ services:
     tty: true
     
   dmz:
-    image: bin/dmz
+    image: bin/dmz-ids
     build: ./dmz
     container_name: dmz
     networks:
